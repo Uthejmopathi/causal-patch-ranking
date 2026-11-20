@@ -1,0 +1,559 @@
+{
+ "main": {
+  "FT-Transformer (proposed)": {
+   "roc_auc": [
+    0.9453,
+    0.0026
+   ],
+   "pr_auc": [
+    0.8825,
+    0.0013
+   ],
+   "f1": [
+    0.7783,
+    0.0103
+   ],
+   "hidden_recall": [
+    0.7379,
+    0.0369
+   ],
+   "top1_success": [
+    0.7872,
+    0.0136
+   ],
+   "sel_regression": [
+    0.0344,
+    0.0057
+   ],
+   "sel_hidden_regression": [
+    0.0272,
+    0.0058
+   ],
+   "sel_fix": [
+    0.8136,
+    0.0128
+   ],
+   "train_s": [
+    81.5386,
+    16.6388
+   ]
+  },
+  "LightGBM": {
+   "roc_auc": [
+    0.9437,
+    0.0035
+   ],
+   "pr_auc": [
+    0.8789,
+    0.0039
+   ],
+   "f1": [
+    0.7768,
+    0.0088
+   ],
+   "hidden_recall": [
+    0.7418,
+    0.0125
+   ],
+   "top1_success": [
+    0.7788,
+    0.0236
+   ],
+   "sel_regression": [
+    0.0376,
+    0.0083
+   ],
+   "sel_hidden_regression": [
+    0.0308,
+    0.0089
+   ],
+   "sel_fix": [
+    0.8088,
+    0.0197
+   ],
+   "train_s": [
+    2.4657,
+    0.1465
+   ]
+  },
+  "MLP": {
+   "roc_auc": [
+    0.9398,
+    0.0049
+   ],
+   "pr_auc": [
+    0.8758,
+    0.0068
+   ],
+   "f1": [
+    0.7715,
+    0.0115
+   ],
+   "hidden_recall": [
+    0.7453,
+    0.0163
+   ],
+   "top1_success": [
+    0.7816,
+    0.0147
+   ],
+   "sel_regression": [
+    0.034,
+    0.0037
+   ],
+   "sel_hidden_regression": [
+    0.0272,
+    0.005
+   ],
+   "sel_fix": [
+    0.8088,
+    0.012
+   ],
+   "train_s": [
+    2.507,
+    0.5518
+   ]
+  },
+  "Test-pass-only": {
+   "roc_auc": [
+    0.5053,
+    0.0114
+   ],
+   "pr_auc": [
+    0.2823,
+    0.0105
+   ],
+   "f1": [
+    0.2728,
+    0.0247
+   ],
+   "hidden_recall": [
+    0.0,
+    0.0
+   ],
+   "top1_success": [
+    0.5708,
+    0.0088
+   ],
+   "sel_regression": [
+    0.2728,
+    0.0127
+   ],
+   "sel_hidden_regression": [
+    0.272,
+    0.0129
+   ],
+   "sel_fix": [
+    0.7764,
+    0.007
+   ],
+   "train_s": [
+    0.0,
+    0.0
+   ]
+  },
+  "Random": {
+   "roc_auc": [
+    NaN,
+    NaN
+   ],
+   "pr_auc": [
+    NaN,
+    NaN
+   ],
+   "f1": [
+    NaN,
+    NaN
+   ],
+   "hidden_recall": [
+    NaN,
+    NaN
+   ],
+   "top1_success": [
+    0.5732,
+    0.0087
+   ],
+   "sel_regression": [
+    0.2636,
+    0.0128
+   ],
+   "sel_hidden_regression": [
+    0.194,
+    0.0102
+   ],
+   "sel_fix": [
+    0.7652,
+    0.0162
+   ],
+   "train_s": [
+    0.0,
+    0.0
+   ]
+  }
+ },
+ "oracle_top1": 0.9656,
+ "significance": [
+  {
+   "comparison": "FT-T vs LightGBM",
+   "delta_top1": 0.0084,
+   "ci_low": -0.0056,
+   "ci_high": 0.0224,
+   "p_two_sided": 0.253,
+   "ftt_only_ok": 166,
+   "other_only_ok": 145
+  },
+  {
+   "comparison": "FT-T vs MLP",
+   "delta_top1": 0.0056,
+   "ci_low": -0.0076,
+   "ci_high": 0.0196,
+   "p_two_sided": 0.413,
+   "ftt_only_ok": 164,
+   "other_only_ok": 150
+  },
+  {
+   "comparison": "FT-T vs Test-pass-only",
+   "delta_top1": 0.2164,
+   "ci_low": 0.1948,
+   "ci_high": 0.238,
+   "p_two_sided": 0.0,
+   "ftt_only_ok": 722,
+   "other_only_ok": 181
+  },
+  {
+   "comparison": "FT-T vs Random",
+   "delta_top1": 0.214,
+   "ci_low": 0.1924,
+   "ci_high": 0.2364,
+   "p_two_sided": 0.0,
+   "ftt_only_ok": 730,
+   "other_only_ok": 195
+  }
+ ],
+ "ablation": {
+  "Full model": {
+   "roc_auc": [
+    0.9462,
+    0.0004
+   ],
+   "pr_auc": [
+    0.8827,
+    0.0017
+   ],
+   "hidden_recall": [
+    0.7325,
+    0.0469
+   ],
+   "hidden_pr_auc": [
+    0.8827,
+    0.0058
+   ],
+   "top1_success": [
+    0.7807,
+    0.0095
+   ],
+   "sel_hidden_regression": [
+    0.0313,
+    0.0012
+   ]
+  },
+  "w/o counterfactual divergence": {
+   "roc_auc": [
+    0.9047,
+    0.0031
+   ],
+   "pr_auc": [
+    0.8154,
+    0.0096
+   ],
+   "hidden_recall": [
+    0.6243,
+    0.0438
+   ],
+   "hidden_pr_auc": [
+    0.8153,
+    0.013
+   ],
+   "top1_success": [
+    0.762,
+    0.014
+   ],
+   "sel_hidden_regression": [
+    0.0473,
+    0.0061
+   ]
+  },
+  "w/o causal-slice features": {
+   "roc_auc": [
+    0.8879,
+    0.0039
+   ],
+   "pr_auc": [
+    0.7631,
+    0.0117
+   ],
+   "hidden_recall": [
+    0.571,
+    0.0576
+   ],
+   "hidden_pr_auc": [
+    0.7628,
+    0.0138
+   ],
+   "top1_success": [
+    0.754,
+    0.0223
+   ],
+   "sel_hidden_regression": [
+    0.05,
+    0.01
+   ]
+  },
+  "w/o CF + causal features": {
+   "roc_auc": [
+    0.847,
+    0.0098
+   ],
+   "pr_auc": [
+    0.6975,
+    0.0221
+   ],
+   "hidden_recall": [
+    0.4803,
+    0.0479
+   ],
+   "hidden_pr_auc": [
+    0.6974,
+    0.0284
+   ],
+   "top1_success": [
+    0.7353,
+    0.0142
+   ],
+   "sel_hidden_regression": [
+    0.0753,
+    0.0076
+   ]
+  },
+  "Single-task (lambda = 0)": {
+   "roc_auc": [
+    0.9453,
+    0.0002
+   ],
+   "pr_auc": [
+    0.8817,
+    0.0033
+   ],
+   "hidden_recall": [
+    0.7249,
+    0.028
+   ],
+   "hidden_pr_auc": [
+    0.881,
+    0.0062
+   ],
+   "top1_success": [
+    0.7653,
+    0.0253
+   ],
+   "sel_hidden_regression": [
+    0.0287,
+    0.0042
+   ]
+  },
+  "w/o bug-context features": {
+   "roc_auc": [
+    0.9449,
+    0.0012
+   ],
+   "pr_auc": [
+    0.882,
+    0.0027
+   ],
+   "hidden_recall": [
+    0.7385,
+    0.0185
+   ],
+   "hidden_pr_auc": [
+    0.8814,
+    0.0083
+   ],
+   "top1_success": [
+    0.78,
+    0.0111
+   ],
+   "sel_hidden_regression": [
+    0.032,
+    0.0072
+   ]
+  },
+  "Risk-only ranking (no fix head)": {
+   "roc_auc": [
+    0.9462,
+    0.0004
+   ],
+   "pr_auc": [
+    0.8827,
+    0.0017
+   ],
+   "hidden_recall": [
+    0.7325,
+    0.0469
+   ],
+   "hidden_pr_auc": [
+    0.8827,
+    0.0058
+   ],
+   "top1_success": [
+    0.7767,
+    0.0133
+   ],
+   "sel_hidden_regression": [
+    0.0267,
+    0.0042
+   ]
+  }
+ },
+ "sensitivity_arch": [
+  {
+   "d": 16,
+   "layers": 2,
+   "pr_auc": 0.8835,
+   "top1_success": 0.783
+  },
+  {
+   "d": 32,
+   "layers": 1,
+   "pr_auc": 0.8873,
+   "top1_success": 0.782
+  },
+  {
+   "d": 32,
+   "layers": 2,
+   "pr_auc": 0.883,
+   "top1_success": 0.777
+  },
+  {
+   "d": 32,
+   "layers": 3,
+   "pr_auc": 0.8816,
+   "top1_success": 0.781
+  },
+  {
+   "d": 64,
+   "layers": 2,
+   "pr_auc": 0.8827,
+   "top1_success": 0.772
+  }
+ ],
+ "risk_coverage_ftt": [
+  {
+   "tau": 0.1,
+   "method": "FT-Transformer (proposed)",
+   "coverage": 0.9252,
+   "success_accepted": 0.8067,
+   "hidden_reg_accepted": 0.0095,
+   "shipped_hidden_per_100bugs": 0.88
+  },
+  {
+   "tau": 0.2,
+   "method": "FT-Transformer (proposed)",
+   "coverage": 0.9644,
+   "success_accepted": 0.8005,
+   "hidden_reg_accepted": 0.0153,
+   "shipped_hidden_per_100bugs": 1.48
+  },
+  {
+   "tau": 0.3,
+   "method": "FT-Transformer (proposed)",
+   "coverage": 0.9788,
+   "success_accepted": 0.7969,
+   "hidden_reg_accepted": 0.0192,
+   "shipped_hidden_per_100bugs": 1.88
+  },
+  {
+   "tau": 0.4,
+   "method": "FT-Transformer (proposed)",
+   "coverage": 0.986,
+   "success_accepted": 0.7955,
+   "hidden_reg_accepted": 0.0195,
+   "shipped_hidden_per_100bugs": 1.92
+  },
+  {
+   "tau": 0.5,
+   "method": "FT-Transformer (proposed)",
+   "coverage": 0.9924,
+   "success_accepted": 0.7916,
+   "hidden_reg_accepted": 0.023,
+   "shipped_hidden_per_100bugs": 2.28
+  },
+  {
+   "tau": 1.0,
+   "method": "FT-Transformer (proposed)",
+   "coverage": 1.0,
+   "success_accepted": 0.7872,
+   "hidden_reg_accepted": 0.0272,
+   "shipped_hidden_per_100bugs": 2.72
+  }
+ ],
+ "feature_importance_top": [
+  {
+   "feature": "dependency_fanout",
+   "pr_auc_drop": 0.2049,
+   "std": 0.0069
+  },
+  {
+   "feature": "counterfactual_trace_divergence",
+   "pr_auc_drop": 0.114,
+   "std": 0.0069
+  },
+  {
+   "feature": "modifiers_changed",
+   "pr_auc_drop": 0.0693,
+   "std": 0.0054
+  },
+  {
+   "feature": "state_vars_written",
+   "pr_auc_drop": 0.0587,
+   "std": 0.0031
+  },
+  {
+   "feature": "repair_strategy",
+   "pr_auc_drop": 0.0389,
+   "std": 0.0025
+  },
+  {
+   "feature": "existing_test_coverage",
+   "pr_auc_drop": 0.0348,
+   "std": 0.0038
+  },
+  {
+   "feature": "bug_type",
+   "pr_auc_drop": 0.0346,
+   "std": 0.0032
+  },
+  {
+   "feature": "causal_slice_size",
+   "pr_auc_drop": 0.0055,
+   "std": 0.0025
+  }
+ ],
+ "epochs_used": [
+  13,
+  14,
+  21,
+  14,
+  16
+ ],
+ "outliers_flagged_test_folds": {
+  "patch_lines_changed": 814,
+  "gas_delta_pct": 145,
+  "causal_slice_size": 177
+ },
+ "raw_missing": {
+  "causal_slice_size": 198,
+  "counterfactual_trace_divergence": 167,
+  "gas_delta_pct": 165
+ },
+ "runtime_s": 1968.1
+}

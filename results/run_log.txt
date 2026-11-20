@@ -1,0 +1,72 @@
+fold 0 done  68s
+fold 1 done  73s
+fold 2 done  78s
+fold 3 done  83s
+fold 4 done  89s
+                                 roc_auc         pr_auc             f1  hidden_recall   top1_success sel_regression sel_hidden_regression        sel_fix          train_s
+FT-Transformer (proposed)  0.945 ± 0.003  0.882 ± 0.001  0.778 ± 0.010  0.738 ± 0.037  0.787 ± 0.014  0.034 ± 0.006         0.027 ± 0.006  0.814 ± 0.013  81.539 ± 16.639
+LightGBM                   0.944 ± 0.003  0.879 ± 0.004  0.777 ± 0.009  0.742 ± 0.012  0.779 ± 0.024  0.038 ± 0.008         0.031 ± 0.009  0.809 ± 0.020    2.466 ± 0.147
+MLP                        0.940 ± 0.005  0.876 ± 0.007  0.772 ± 0.012  0.745 ± 0.016  0.782 ± 0.015  0.034 ± 0.004         0.027 ± 0.005  0.809 ± 0.012    2.507 ± 0.552
+Test-pass-only             0.505 ± 0.011  0.282 ± 0.010  0.273 ± 0.025  0.000 ± 0.000  0.571 ± 0.009  0.273 ± 0.013         0.272 ± 0.013  0.776 ± 0.007    0.000 ± 0.000
+Random                         nan ± nan      nan ± nan      nan ± nan      nan ± nan  0.573 ± 0.009  0.264 ± 0.013         0.194 ± 0.010  0.765 ± 0.016    0.000 ± 0.000
+               comparison  delta_top1   ci_low  ci_high  p_two_sided  ftt_only_ok  other_only_ok
+0        FT-T vs LightGBM      0.0084 -0.00560   0.0224        0.253          166            145
+1             FT-T vs MLP      0.0056 -0.00761   0.0196        0.413          164            150
+2  FT-T vs Test-pass-only      0.2164  0.19480   0.2380        0.000          722            181
+3          FT-T vs Random      0.2140  0.19240   0.2364        0.000          730            195
+ablation fold 0 done  416s
+ablation fold 1 done  755s
+ablation fold 2 done  1170s
+                                       roc_auc         pr_auc  hidden_recall  hidden_pr_auc   top1_success sel_hidden_regression
+Full model                       0.946 ± 0.000  0.883 ± 0.002  0.732 ± 0.047  0.883 ± 0.006  0.781 ± 0.009         0.031 ± 0.001
+w/o counterfactual divergence    0.905 ± 0.003  0.815 ± 0.010  0.624 ± 0.044  0.815 ± 0.013  0.762 ± 0.014         0.047 ± 0.006
+w/o causal-slice features        0.888 ± 0.004  0.763 ± 0.012  0.571 ± 0.058  0.763 ± 0.014  0.754 ± 0.022         0.050 ± 0.010
+w/o CF + causal features         0.847 ± 0.010  0.698 ± 0.022  0.480 ± 0.048  0.697 ± 0.028  0.735 ± 0.014         0.075 ± 0.008
+Single-task (lambda = 0)         0.945 ± 0.000  0.882 ± 0.003  0.725 ± 0.028  0.881 ± 0.006  0.765 ± 0.025         0.029 ± 0.004
+w/o bug-context features         0.945 ± 0.001  0.882 ± 0.003  0.738 ± 0.019  0.881 ± 0.008  0.780 ± 0.011         0.032 ± 0.007
+Risk-only ranking (no fix head)  0.946 ± 0.000  0.883 ± 0.002  0.732 ± 0.047  0.883 ± 0.006  0.777 ± 0.013         0.027 ± 0.004
+sensitivity d=16 L=2 done  1332s
+sensitivity d=32 L=2 done  1332s
+sensitivity d=64 L=2 done  1545s
+sensitivity d=32 L=1 done  1686s
+sensitivity d=32 L=3 done  1937s
+{
+"roc_auc": [
+0.9453,
+0.0026
+],
+"pr_auc": [
+0.8825,
+0.0013
+],
+"f1": [
+0.7783,
+0.0103
+],
+"hidden_recall": [
+0.7379,
+0.0369
+],
+"top1_success": [
+0.7872,
+0.0136
+],
+"sel_regression": [
+0.0344,
+0.0057
+],
+"sel_hidden_regression": [
+0.0272,
+0.0058
+],
+"sel_fix": [
+0.8136,
+0.0128
+],
+"train_s": [
+81.5386,
+16.6388
+]
+}
+total runtime 1968s
+EXIT 0

@@ -1,0 +1,12 @@
+Item,Value
+Bugs (groups) / candidate patches,"2,500 / 13,650"
+"Candidates per bug (min–max, mean)","3–8, 5.46"
+Contract modules / bug classes / strategies,5 / 7 / 4
+Numeric + categorical input features,14 + 3 (+5 bug-context)
+Patches passing existing tests,74.8%
+Fix target bug,77.0%
+Introduce regression (main target),28.0%
+Hidden regression (passes tests),20.7%
+Regressions hidden from tests,74.0%
+Bugs with ≥1 correct patch (oracle),96.6%
+Missing: slice / CF div. / gas,198 / 167 / 165

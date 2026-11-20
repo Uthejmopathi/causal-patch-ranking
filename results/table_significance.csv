@@ -1,0 +1,5 @@
+comparison,delta_top1,ci_low,ci_high,p_two_sided,ftt_only_ok,other_only_ok
+FT-T vs LightGBM,0.0084,-0.0056,0.0224,0.253,166,145
+FT-T vs MLP,0.0056,-0.00761,0.0196,0.413,164,150
+FT-T vs Test-pass-only,0.2164,0.1948,0.238,0.0,722,181
+FT-T vs Random,0.214,0.1924,0.2364,0.0,730,195

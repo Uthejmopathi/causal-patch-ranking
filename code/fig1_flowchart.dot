@@ -1,0 +1,82 @@
+digraph G {
+  graph [rankdir=TB, fontname="Helvetica", fontsize=13, nodesep=0.14, ranksep=0.20, newrank=true, pad=0.03];
+  node  [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=14.5, fillcolor="#eeeeee", color="#777777", penwidth=1.0, margin="0.05,0.025", height=0.28];
+  edge  [color="#555555", arrowsize=0.55, fontname="Helvetica", fontsize=13];
+
+  subgraph cluster_data {
+    label="1  Data layer"; labeljust=l; style="rounded,filled"; fillcolor="#f4f4f4"; color="#bbbbbb";
+    bug  [label="Bug b in AI-\ngenerated contract"];
+    cand [label="Agent proposes\n3-8 patches c"];
+    feat [label="Patch + causal-\nimpact features"];
+  }
+
+  subgraph cluster_pre {
+    label="2  Pre-processing (fit on training fold only)"; labeljust=l; style="rounded,filled"; fillcolor="#f2f6fa"; color="#b5c7d8";
+    clean [label="MAD outliers -> NaN,\nmedian impute"];
+    ctx   [label="Bug-context features\nx - med_b(x)  (1)"];
+  }
+
+  subgraph cluster_ftt {
+    label="3  Proposed multi-task FT-Transformer"; labeljust=l; style="rounded,filled"; fillcolor="#fdf0ee"; color="#e3a79e";
+    node [fillcolor="#f6d5cf", color="#c0392b"];
+    tokn [label="Numeric tokens\nx_j W_j + b_j  (2)"];
+    cls  [label="[CLS] +\nd-dim tokens"];
+    tokc [label="Category\nembeddings  (2)"];
+    enc  [label="Encoder x L\nMHSA+FFN (3)-(4)"];
+    hr   [label="Risk head\nr = P(regr.)  (5)"];
+    hf   [label="Fix head\nf = P(fix)  (5)"];
+    loss [label="L = BCE_r +\nlambda BCE_f  (6)"];
+    es   [shape=diamond, label="val. loss\nimproved?", fontsize=13, margin="0.0,0.0"];
+  }
+
+  subgraph cluster_ver {
+    label="4  Counterfactual regression verification"; labeljust=l; style="rounded,filled"; fillcolor="#fdf0ee"; color="#e3a79e";
+    node [fillcolor="#f6d5cf", color="#c0392b"];
+    score [label="Rank score\ns_c = f (1 - r)  (7)"];
+    pick  [label="c* = argmax s_c\nper bug  (8)"];
+    gate  [shape=diamond, label="r(c*)\n<= tau?", fontsize=13, margin="0.0,0.0"];
+    acc   [label="Auto-merge", fillcolor="#ffffff"];
+    esc   [label="Human audit", fillcolor="#ffffff"];
+  }
+
+  subgraph cluster_eval {
+    label="5  Evaluation"; labeljust=l; style="rounded,filled"; fillcolor="#f4f4f4"; color="#bbbbbb";
+    cv   [label="GroupKFold\n(5 folds, by bug)"];
+    base [label="Test-pass, random,\nLightGBM, MLP"];
+    met  [label="PR-AUC, hidden\nrecall, top-1  (9)"];
+  }
+
+  {rank=same; bug; cand; feat}
+  {rank=same; clean; ctx}
+  {rank=same; tokn; cls; tokc}
+  {rank=same; hr; enc; hf}
+  {rank=same; loss; es}
+  {rank=same; score; pick; gate}
+  {rank=same; acc; esc}
+  {rank=same; cv; base; met}
+
+  // left spine keeps all stages left-aligned
+  edge [style=invis, weight=50];
+  bug -> clean -> tokn -> hr -> loss -> score -> acc -> cv;
+  edge [style=invis, weight=5];
+  cand -> ctx; tokn -> cls -> tokc; enc -> hf; hf -> es; esc -> met; cv -> base -> met;
+
+  edge [style=solid, weight=1];
+  bug -> cand -> feat;
+  feat -> clean [constraint=false];
+  clean -> ctx;
+  ctx -> tokn; ctx -> tokc;
+  tokn -> cls; cls -> tokc [dir=back];
+  cls -> enc;
+  enc -> hr; enc -> hf;
+  hr -> loss; hf -> loss;
+  loss -> es;
+  es -> enc [xlabel="yes: next\nepoch  ", color="#c0392b", fontcolor="#c0392b", style=dashed, constraint=false];
+  es -> score [xlabel="no: best weights ", color="#c0392b", fontcolor="#c0392b"];
+  score -> pick -> gate;
+  gate -> esc [label=" no"];
+  gate -> acc [xlabel="yes "];
+  acc -> cv [style=dotted];
+  esc -> met [style=dotted];
+  cv -> base -> met;
+}
